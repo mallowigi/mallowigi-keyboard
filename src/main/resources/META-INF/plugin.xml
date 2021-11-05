@@ -2,7 +2,7 @@
 <idea-plugin>
     <id>com.mallowigi.keymap</id>
     <name>Mallowigi KeyMap</name>
-    <version>1.2</version>
+    <version>1.3.0</version>
     <category>Keymap</category>
     <vendor>AtomMaterial</vendor>
 
