@@ -167,6 +167,9 @@
     <action id="Coverage">
         <keyboard-shortcut first-keystroke="ctrl f5" />
     </action>
+    <action id="Debugger.AddInlineWatch">
+        <keyboard-shortcut first-keystroke="alt a" second-keystroke="alt i" />
+    </action>
     <action id="DSM.Close">
         <keyboard-shortcut first-keystroke="shift ctrl f4" />
     </action>
@@ -841,7 +844,7 @@
         <keyboard-shortcut first-keystroke="ctrl alt up" />
     </action>
     <action id="TabList">
-        <keyboard-shortcut first-keystroke="alt s" second-keystroke="alt h" />
+        <keyboard-shortcut first-keystroke="ctrl meta alt down" />
     </action>
     <action id="TabShiftActions.ShiftDown" />
     <action id="TabShiftActions.ShiftUp" />
@@ -890,7 +893,7 @@
     </action>
     <action id="ToggleRenderedDocPresentation">
         <keyboard-shortcut first-keystroke="ctrl alt q" />
-        <keyboard-shortcut first-keystroke="ctrl period" />
+        <keyboard-shortcut first-keystroke="meta period" />
     </action>
     <action id="TypeHierarchy" />
     <action id="TypeScriptExtractTypeAlias">
@@ -978,4 +981,6 @@
     <action id="tasks.close" />
     <action id="tasks.switch" />
     <action id="tasks.switch.toolbar" />
+    <action id="org.intellij.plugins.markdown.ui.actions.styling.MarkdownCreateLinkAction" />
+    <action id="org.intellij.plugins.markdown.ui.actions.styling.ToggleCodeSpanAction" />
 </keymap>
