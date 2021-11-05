@@ -1,18 +1,18 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.mallowigi.mallowigikeyboard</id>
-    <name>mallowigi-keyboard</name>
-    <vendor>mallowigi</vendor>
+    <id>com.mallowigi.keymap</id>
+    <name>Mallowigi KeyMap</name>
+    <version>1.2</version>
+    <category>Keymap</category>
+    <vendor>AtomMaterial</vendor>
+
+    <description>
+        Mallowigi's custom keymap. A mix of Windows and Mac keymaps.
+    </description>
 
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.mallowigi.mallowigikeyboard.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.mallowigi.mallowigikeyboard.services.MyProjectService"/>
+        <bundledKeymap file="Mallowigi OSX.xml" />
     </extensions>
-
-    <applicationListeners>
-        <listener class="com.github.mallowigi.mallowigikeyboard.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
 </idea-plugin>

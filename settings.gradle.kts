@@ -1,1 +1,1 @@
-rootProject.name = "mallowigi-keyboard"
+rootProject.name = "Mallowigi Keymap"
