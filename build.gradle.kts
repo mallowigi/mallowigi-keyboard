@@ -88,6 +88,10 @@ tasks {
         password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
     }
 
+    buildSearchableOptions {
+        enabled = false
+    }
+
     publishPlugin {
         dependsOn("patchChangelog")
         token.set(System.getenv("PUBLISH_TOKEN"))
