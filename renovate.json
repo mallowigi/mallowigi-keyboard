@@ -6,9 +6,6 @@
     "dependencies"
   ],
   "automerge": true,
-  "labels": [
-    "is:dependency-update"
-  ],
   "rebaseWhen": "behind-base-branch",
   "bumpVersion": "patch",
   "commitBodyTable": true,
