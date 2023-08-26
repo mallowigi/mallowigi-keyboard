@@ -22,7 +22,7 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <bundledKeymap file="Mallowigi.xml" id="Mallowigi Keymap"/>
+        <bundledKeymap file="Mallowigi Keymap.xml" id="Mallowigi Keymap"/>
         <notificationGroup displayType="BALLOON"
                            id="Mallowigi Shortcut Maker"
                            isLogByDefault="false"/>
