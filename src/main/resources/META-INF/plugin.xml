@@ -5,6 +5,7 @@
     <version>3.0.0</version>
     <category>Keymap</category>
     <vendor>AtomMaterial</vendor>
+    <idea-version since-build="232.0"/>
 
     <description>
         Mallowigi's custom keymap. A mix of Windows and Mac keymaps.
@@ -14,5 +15,14 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <bundledKeymap file="Mallowigi.xml"/>
+        <notificationGroup displayType="BALLOON"
+                           id="A Shortcut Appears!!!"
+                           isLogByDefault="false"/>
     </extensions>
+
+    <!--suppress PluginXmlValidity -->
+    <projectListeners>
+        <listener class="com.mallowigi.keymap.ShortcutNotifier"
+                  topic="com.intellij.openapi.actionSystem.ex.AnActionListener"/>
+    </projectListeners>
 </idea-plugin>

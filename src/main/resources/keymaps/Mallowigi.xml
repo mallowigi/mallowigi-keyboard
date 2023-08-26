@@ -1,4 +1,4 @@
-<keymap version="1" name="Mallowigi" parent="$default">
+<keymap version="1" name="Mallowigi Keymap" parent="$default">
     <action id="$Copy">
         <keyboard-shortcut first-keystroke="meta c"/>
         <keyboard-shortcut first-keystroke="ctrl c"/>
@@ -629,9 +629,6 @@
     <action id="MarkAsContentRoot"/>
     <action id="MarkExcludeRoot">
         <keyboard-shortcut first-keystroke="shift ctrl alt e"/>
-    </action>
-    <action id="MarkdownNavigator.EditorAndPreviewLayoutChange">
-        <keyboard-shortcut first-keystroke="alt s" second-keystroke="alt e"/>
     </action>
     <action id="Maven.Reimport">
         <keyboard-shortcut first-keystroke="ctrl m"/>
