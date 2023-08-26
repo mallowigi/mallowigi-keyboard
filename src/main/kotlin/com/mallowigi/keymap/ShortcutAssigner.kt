@@ -13,7 +13,7 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.text.StringUtil
 import javax.swing.KeyStroke
 
-class ShortcutNotifier(private val project: Project) : AnActionListener {
+class ShortcutAssigner(private val project: Project) : AnActionListener {
   private var notification: Notification? = null
 
   override fun afterActionPerformed(action: AnAction, event: AnActionEvent, result: AnActionResult) {
@@ -32,13 +32,10 @@ class ShortcutNotifier(private val project: Project) : AnActionListener {
     if (text.lowercase() != template.lowercase()) return
 
     val newShortcut = createShortcutFromText(text)
-    if (hasShortcut(newShortcut)) return
+    if (newShortcut == null || hasShortcut(newShortcut)) return
 
     notifyUser(actionId, text, newShortcut)
   }
-
-  private fun shouldExitOnProjectStatus(project: Project): Boolean =
-    project.isDisposed || project.isDefault || !project.isInitialized
 
   private fun shouldExitOnEventPlace(event: AnActionEvent): Boolean = event.place === "keyboard shortcut"
 
@@ -47,20 +44,18 @@ class ShortcutNotifier(private val project: Project) : AnActionListener {
     return actionId == null || KeymapManager.getInstance().activeKeymap.getShortcuts(actionId).isNotEmpty()
   }
 
-  private fun trimIgnoredPrefixes(text: String): String = IGNORED_PREFIXES.fold(text) { acc, ignoredPrefix ->
-    acc.replace(ignoredPrefix, "")
-  }.trim()
-
-  private fun extractUppercaseChars(text: String) = text.filter { it.isUpperCase() }
-    .take(2)
-    .toCharArray()
-    .let { (firstUppercase, secondUppercase) -> firstUppercase to secondUppercase }
-
-  private fun hasShortcut(shortcut: KeyboardShortcut): Boolean =
-    KeymapManager.getInstance().activeKeymap.getActionIds(shortcut).isNotEmpty()
-
-  private fun createShortcutFromText(text: String): KeyboardShortcut {
+  private fun createShortcutFromText(text: String): KeyboardShortcut? {
     val (firstChar, secondChar) = extractUppercaseChars(text)
+    if (firstChar == DEFAULT_CHAR && secondChar == DEFAULT_CHAR) return null
+    else if (secondChar == DEFAULT_CHAR) return KeyboardShortcut(
+      KeyStroke.getKeyStroke("alt $firstChar"),
+      null
+    )
+    else if (firstChar == DEFAULT_CHAR) return KeyboardShortcut(
+      KeyStroke.getKeyStroke("alt $secondChar"),
+      null
+    )
+
     return KeyboardShortcut(
       KeyStroke.getKeyStroke("alt $firstChar"),
       KeyStroke.getKeyStroke("alt $secondChar")
@@ -85,7 +80,7 @@ class ShortcutNotifier(private val project: Project) : AnActionListener {
     return Notification(
       NOTIFICATION_ID,
       "A Shortcut Appears!",
-      "<html><body>You may assign the ($shortcutText) sequence for the action '${decoratedText}'",
+      "You may assign the ($shortcutText) sequence for the action '${decoratedText}'",
       NotificationType.INFORMATION
     )
   }
@@ -100,7 +95,6 @@ class ShortcutNotifier(private val project: Project) : AnActionListener {
     }
 
   companion object {
-    val IGNORED_PREFIXES = arrayOf("Enter", "Exit", "Toggle")
-    const val NOTIFICATION_ID = "A Shortcut Appears!!!"
+    const val NOTIFICATION_ID = "Mallowigi Shortcut Maker"
   }
 }

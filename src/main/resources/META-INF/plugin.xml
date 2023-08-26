@@ -1,28 +1,41 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.mallowigi.keymap</id>
-    <name>Mallowigi KeyMap</name>
+    <name>Mallowigi Keymap</name>
     <version>3.0.0</version>
     <category>Keymap</category>
     <vendor>AtomMaterial</vendor>
     <idea-version since-build="232.0"/>
 
-    <description>
-        Mallowigi's custom keymap. A mix of Windows and Mac keymaps.
+    <description><![CDATA[
+        <h3>Mallowigi's custom keymap. A mix of Windows and Mac keymaps with Mnemonics for easy usage.</h3>
+        <p>This is my own personal Keymap that I've been maintaining since 2012. It is a mix of Windows and Mac keymaps
+            with Mnemonics for easy usage.</p>
+        <p>This plugin also includes two other features:</p>
+        <ul>
+            <li><b>Mallowigi Shortcut Detective:</b> - Displays a notification about pressed shortcuts.</li>
+            <li><b>Mallowigi Shortcut Maker:</b> - Create Mnemonic Shortcuts for Actions that don't have one.</li>
+        </ul>
+        ]]>
     </description>
 
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <bundledKeymap file="Mallowigi.xml"/>
+        <bundledKeymap file="Mallowigi.xml" id="Mallowigi Keymap"/>
         <notificationGroup displayType="BALLOON"
-                           id="A Shortcut Appears!!!"
+                           id="Mallowigi Shortcut Maker"
+                           isLogByDefault="false"/>
+        <notificationGroup displayType="BALLOON"
+                           id="Mallowigi Shortcut Detective"
                            isLogByDefault="false"/>
     </extensions>
 
     <!--suppress PluginXmlValidity -->
     <projectListeners>
-        <listener class="com.mallowigi.keymap.ShortcutNotifier"
+        <listener class="com.mallowigi.keymap.ShortcutAssigner"
+                  topic="com.intellij.openapi.actionSystem.ex.AnActionListener"/>
+        <listener class="com.mallowigi.keymap.ShortcutDetective"
                   topic="com.intellij.openapi.actionSystem.ex.AnActionListener"/>
     </projectListeners>
 </idea-plugin>
