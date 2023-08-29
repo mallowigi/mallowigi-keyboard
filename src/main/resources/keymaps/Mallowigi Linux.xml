@@ -1,4 +1,4 @@
-<keymap version="1" name="Mallowigi Keymap (Win)" parent="$default">
+﻿<keymap version="1" name="Mallowigi Keymap (Linux)" parent="$default">
     <action id="$Copy">
         <keyboard-shortcut first-keystroke="ctrl c"/>
     </action>
