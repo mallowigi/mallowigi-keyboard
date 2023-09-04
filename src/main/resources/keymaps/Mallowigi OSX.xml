@@ -417,7 +417,7 @@
         <keyboard-shortcut first-keystroke="meta alt right"/>
     </action>
     <action id="Generate">
-        <keyboard-shortcut first-keystroke="alt g"/>
+        <keyboard-shortcut first-keystroke="ctrl g"/>
     </action>
     <action id="Git.Branches">
         <keyboard-shortcut first-keystroke="shift ctrl b"/>
@@ -495,6 +495,7 @@
         <keyboard-shortcut first-keystroke="meta alt o"/>
     </action>
     <action id="GotoTest"/>
+    <action id="GotoText"/>
     <action id="GotoTypeDeclaration">
         <mouse-shortcut keystroke="shift control button1"/>
         <mouse-shortcut keystroke="shift button2"/>
@@ -636,9 +637,7 @@
     <action id="OpenFile">
         <keyboard-shortcut first-keystroke="meta o"/>
     </action>
-    <action id="OpenGruntConsole">
-        <keyboard-shortcut first-keystroke="shift ctrl g"/>
-    </action>
+    <action id="OpenGruntConsole"/>
     <action id="OpenModuleSettings">
         <keyboard-shortcut first-keystroke="f4"/>
     </action>
