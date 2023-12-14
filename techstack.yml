@@ -1,7 +1,7 @@
 repo_name: mallowigi/mallowigi-keyboard
-report_id: 274052234545f4bc5bebe124af03b126
+report_id: 0fd0c69d432e7c6f477353e34b4cda7d
 repo_type: Public
-timestamp: '2023-11-19T07:57:38+00:00'
+timestamp: '2023-12-14T13:14:53+00:00'
 requested_by: mallowigi
 provider: github
 branch: main
@@ -33,9 +33,9 @@ tools:
   category: Build, Test, Deploy
   sub_category: Continuous Integration
   image_url: https://img.stackshare.io/service/11563/actions.png
-  detection_source: ".github/workflows/run-ui-tests.yml"
+  detection_source: ".github/workflows/build.yml"
   last_updated_by: renovate[bot]
-  last_updated_on: 2023-10-01 17:35:38.000000000 Z
+  last_updated_on: 2023-11-29 20:12:41.000000000 Z
 - name: Gradle
   description: A powerful build system for the JVM
   website_url: https://www.gradle.org/
@@ -45,6 +45,6 @@ tools:
   category: Build, Test, Deploy
   sub_category: Java Build Tools
   image_url: https://img.stackshare.io/service/975/gradlephant-social-black-bg.png
-  detection_source: gradlew.bat
+  detection_source: gradlew
   last_updated_by: renovate[bot]
   last_updated_on: 2023-08-17 09:56:29.000000000 Z
