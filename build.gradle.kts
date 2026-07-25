@@ -1,54 +1,121 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.changelog.Changelog
+import org.jetbrains.changelog.markdownToHTML
 
 fun properties(key: String) = project.findProperty(key).toString()
+fun environment(key: String) = providers.environmentVariable(key)
+
+// Import variables from gradle.properties file
+val pluginGroup: String by project
+val pluginName: String by project
+val pluginVersion: String by project
+val pluginSinceBuild: String by project
+val pluginUntilBuild: String by project
+val pluginVerifierIdeVersions: String by project
+
+val platformType: String by project
+val platformVersion: String by project
+val platformPlugins: String by project
+val platformDownloadSources: String by project
+
+val javaVersion: String by project
 
 plugins {
-  // Java support
-  id("java")
-  // Kotlin support
-  id("org.jetbrains.kotlin.jvm") version "1.9.22"
-  // Gradle IntelliJ Plugin
-  id("org.jetbrains.intellij") version "1.17.0"
-  // Gradle Changelog Plugin
-  id("org.jetbrains.changelog") version "2.2.0"
+  alias(libs.plugins.kotlin)
+  alias(libs.plugins.gradleIntelliJPlugin)
+  alias(libs.plugins.changelog)
+  alias(libs.plugins.detekt)
+  alias(libs.plugins.ktlint)
 }
 
-group = properties("pluginGroup")
-version = properties("pluginVersion")
+group = pluginGroup
+version = pluginVersion
 
 // Configure project's dependencies
 repositories {
   mavenCentral()
+  mavenLocal()
+  gradlePluginPortal()
+
+  intellijPlatform {
+    defaultRepositories()
+    jetbrainsRuntime()
+  }
 }
 
-// Configure Gradle IntelliJ Plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
-intellij {
-  pluginName.set(properties("pluginName"))
-  version.set(properties("platformVersion"))
-  type.set(properties("platformType"))
-  downloadSources.set(properties("platformDownloadSources").toBoolean())
-  updateSinceUntilBuild.set(true)
+dependencies {
+  intellijPlatform {
+    intellijIdeaUltimate(platformVersion) {
+      useInstaller = false
+    }
+    pluginVerifier()
+    zipSigner()
+  }
+}
 
-  // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file.
-  plugins.set(properties("platformPlugins").split(',').map(String::trim).filter(String::isNotEmpty))
+intellijPlatform {
+  pluginConfiguration {
+    id = pluginGroup
+    name = pluginName
+    version = pluginVersion
+
+    ideaVersion {
+      sinceBuild = pluginSinceBuild
+      untilBuild = pluginUntilBuild
+    }
+
+    changeNotes = provider {
+      changelog.run {
+        renderItem(
+          getOrNull(properties("pluginVersion")) ?: getLatest(),
+          Changelog.OutputType.HTML,
+        )
+      }
+    }
+  }
+
+  pluginVerification {
+    ides {
+      recommended()
+      select {
+        sinceBuild = pluginSinceBuild
+        untilBuild = pluginUntilBuild
+      }
+    }
+  }
+
+  signing {
+    certificateChain = environment("CERTIFICATE_CHAIN")
+    privateKey = environment("PRIVATE_KEY")
+    password = environment("PRIVATE_KEY_PASSWORD")
+  }
+
+  publishing {
+    token = environment("PUBLISH_TOKEN")
+    channels = listOf(pluginVersion.split('-').getOrElse(1) { "default" }.split('.').first())
+  }
 }
 
 // Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
 changelog {
-  version.set(properties("pluginVersion"))
-  groups.set(emptyList())
+  path.set("${project.projectDir}/docs/CHANGELOG.md")
+  version.set(pluginVersion)
+  itemPrefix.set("-")
+  keepUnreleasedSection.set(true)
+  unreleasedTerm.set("[Unreleased]")
+  groups.set(listOf("Features", "Fixes", "Other", "Bump"))
 }
 
 
+kotlin {
+  jvmToolchain(25)
+}
+
 tasks {
-  // Set the JVM compatibility versions
-  properties("javaVersion").let {
+  javaVersion.let {
+    // Set the compatibility versions to 21
     withType<JavaCompile> {
-      sourceCompatibility = it
-      targetCompatibility = it
-    }
-    withType<KotlinCompile> {
-      kotlinOptions.jvmTarget = it
+      sourceCompatibility = "25"
+      targetCompatibility = "25"
     }
   }
 
@@ -56,48 +123,14 @@ tasks {
     gradleVersion = properties("gradleVersion")
   }
 
-  patchPluginXml {
-    version.set(properties("pluginVersion"))
-    sinceBuild.set(properties("pluginSinceBuild"))
-    untilBuild.set(properties("pluginUntilBuild"))
-
-    // Get the latest available change notes from the changelog file
-    changeNotes.set(provider {
-      changelog.run {
-        getOrNull(properties("pluginVersion")) ?: getLatest()
-      }.toHTML()
-    })
-  }
-
-  runPluginVerifier {
-    ideVersions.set(properties("pluginVerifierIdeVersions").split(',').map(String::trim).filter(String::isNotEmpty))
-  }
-
-  // Configure UI tests plugin
-  // Read more: https://github.com/JetBrains/intellij-ui-test-robot
-  runIdeForUiTests {
-    systemProperty("robot-server.port", "8082")
-    systemProperty("ide.mac.message.dialogs.as.sheets", "false")
-    systemProperty("jb.privacy.policy.text", "<!--999.999-->")
-    systemProperty("jb.consents.confirmation.enabled", "false")
-  }
-
-  signPlugin {
-    certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
-    privateKey.set(System.getenv("PRIVATE_KEY"))
-    password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
-  }
-
   buildSearchableOptions {
     enabled = false
   }
 
-  publishPlugin {
-    dependsOn("patchChangelog")
-    token.set(System.getenv("INTELLIJ_PUBLISH_TOKEN") ?: file("./publishToken").readText().trim())
-    // pluginVersion is based on the SemVer (https://semver.org) and supports pre-release labels, like 2.1.7-alpha.3
-    // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
-    // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
-    channels.set(listOf(properties("pluginVersion").split('-').getOrElse(1) { "default" }.split('.').first()))
+  register("markdownToHtml") {
+    val input = File("./docs/CHANGELOG.md")
+    File("./docs/CHANGELOG.html").run {
+      writeText(markdownToHTML(input.readText()))
+    }
   }
 }

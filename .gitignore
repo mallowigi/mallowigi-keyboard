@@ -3,3 +3,7 @@
 .qodana
 build
 publishToken
+.junie
+.intelliJPlatform
+.venv
+.kotlin
