@@ -26,7 +26,7 @@ class ShortcutDetective(private val project: Project) : AnActionListener {
     notifyUser(text)
   }
 
-  private fun shouldExitOnEventPlace(event: AnActionEvent): Boolean = event.place !== "keyboard shortcut"
+  private fun shouldExitOnEventPlace(event: AnActionEvent): Boolean = event.place != "keyboard shortcut"
 
   private fun shouldExitOnActionShortcut(event: AnActionEvent, action: AnAction): Boolean {
     val actionId = event.actionManager.getId(action)
@@ -55,7 +55,7 @@ class ShortcutDetective(private val project: Project) : AnActionListener {
   }
 
   companion object {
-    const val NOTIFICATION_ID = "Mallowigi Shortcut Detective"
-    const val TOGGLE_ACTION = "Toggle"
+    const val NOTIFICATION_ID: String = "Mallowigi Shortcut Detective"
+    const val TOGGLE_ACTION: String = "Toggle"
   }
 }

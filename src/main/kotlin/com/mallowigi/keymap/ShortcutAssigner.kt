@@ -37,7 +37,7 @@ class ShortcutAssigner(private val project: Project) : AnActionListener {
     notifyUser(actionId, text, newShortcut)
   }
 
-  private fun shouldExitOnEventPlace(event: AnActionEvent): Boolean = event.place === "keyboard shortcut"
+  private fun shouldExitOnEventPlace(event: AnActionEvent): Boolean = event.place == "keyboard shortcut"
 
   private fun shouldExitOnActionShortcut(event: AnActionEvent, action: AnAction): Boolean {
     val actionId = event.actionManager.getId(action)

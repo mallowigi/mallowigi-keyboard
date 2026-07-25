@@ -4,8 +4,8 @@ import com.intellij.openapi.actionSystem.KeyboardShortcut
 import com.intellij.openapi.keymap.KeymapManager
 import com.intellij.openapi.project.Project
 
-val IGNORED_PREFIXES = arrayOf("Enter", "Exit", "Toggle")
-const val DEFAULT_CHAR = ' '
+val IGNORED_PREFIXES: Array<String> = arrayOf("Enter", "Exit", "Toggle")
+const val DEFAULT_CHAR: Char = ' '
 
 fun shouldExitOnProjectStatus(project: Project): Boolean =
   project.isDisposed || project.isDefault || !project.isInitialized
@@ -24,5 +24,7 @@ fun extractUppercaseChars(text: String): Pair<Char, Char> {
   return firstUppercase to secondUppercase
 }
 
-fun hasShortcut(shortcut: KeyboardShortcut): Boolean =
-  KeymapManager.getInstance().activeKeymap.getActionIds(shortcut).isNotEmpty()
+fun hasShortcut(shortcut: KeyboardShortcut): Boolean {
+  val keymap = KeymapManager.getInstance().activeKeymap
+  return keymap.actionIds.any { shortcut in keymap.getShortcuts(it) }
+}
