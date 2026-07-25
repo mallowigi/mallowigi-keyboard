@@ -1,6 +1,7 @@
-import sys
-import re
 import os
+import re
+import sys
+
 
 def sort_keymap(file_path):
     if not os.path.exists(file_path):

@@ -194,6 +194,9 @@
     </action>
     <action id="ContextHelp"/>
     <action id="copilot.chat.show"/>
+    <action id="copilot.git.commit.button">
+        <keyboard-shortcut first-keystroke="alt g" second-keystroke="alt c"/>
+    </action>
     <action id="CopyElement"/>
     <action id="CopyPaths"/>
     <action id="Coverage">
@@ -362,6 +365,7 @@
     <action id="EditorStartNewLine">
         <keyboard-shortcut first-keystroke="meta enter"/>
     </action>
+    <action id="EditorStartNewLineBefore"/>
     <action id="EditorStartNewLineBefore">
         <keyboard-shortcut first-keystroke="shift enter"/>
     </action>
@@ -565,6 +569,9 @@
     <action id="Images.Editor.ActualSize">
         <keyboard-shortcut first-keystroke="ctrl divide"/>
     </action>
+    <action id="Images.Editor.FitZoomToWindow">
+        <keyboard-shortcut first-keystroke="alt f" second-keystroke="alt z"/>
+    </action>
     <action id="Images.Editor.ZoomIn"/>
     <action id="Images.Editor.ZoomOut"/>
     <action id="Images.SetBackgroundImage">
@@ -730,6 +737,10 @@
     </action>
     <action id="ProblemsView.QuickFixes">
         <keyboard-shortcut first-keystroke="alt enter"/>
+    </action>
+
+    <action id="ProjectView.ShowExcludedFiles">
+        <keyboard-shortcut first-keystroke="alt s" second-keystroke="alt e"/>
     </action>
     <action id="PublishGroup.Upload">
         <keyboard-shortcut first-keystroke="ctrl u"/>
