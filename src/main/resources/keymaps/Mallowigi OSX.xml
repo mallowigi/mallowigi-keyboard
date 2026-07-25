@@ -14,6 +14,9 @@
     <action id="$SelectAll">
         <keyboard-shortcut first-keystroke="meta a"/>
     </action>
+    <action id="$ShowMaterialPaletteDialogAction">
+        <keyboard-shortcut first-keystroke="shift alt p"/>
+    </action>
     <action id="$Undo">
         <keyboard-shortcut first-keystroke="meta z"/>
     </action>
@@ -44,10 +47,10 @@
     <action id="Annotate">
         <keyboard-shortcut first-keystroke="ctrl k" second-keystroke="shift ctrl a"/>
     </action>
-    <action id="AutoIndentLines"/>
     <action id="AttachProject">
         <keyboard-shortcut first-keystroke="alt a" second-keystroke="alt p"/>
     </action>
+    <action id="AutoIndentLines"/>
     <action id="Back">
         <mouse-shortcut keystroke="button4"/>
         <keyboard-shortcut first-keystroke="meta alt left"/>
@@ -61,17 +64,21 @@
     <action id="BrowseWordAtCaretPlugin.Previous">
         <keyboard-shortcut first-keystroke="ctrl alt p"/>
     </action>
+
+    <action id="CallInlineCompletionAction">
+        <keyboard-shortcut first-keystroke="alt back_slash"/>
+    </action>
     <action id="ChangeSignature">
         <keyboard-shortcut first-keystroke="shift alt m"/>
     </action>
     <action id="ChangesView.Commit">
         <keyboard-shortcut first-keystroke="shift ctrl c"/>
     </action>
-    <action id="CheckStyleCurrentFileAction">
-        <keyboard-shortcut first-keystroke="ctrl f5"/>
-    </action>
     <action id="CheckinProject">
         <keyboard-shortcut first-keystroke="shift ctrl c"/>
+    </action>
+    <action id="CheckStyleCurrentFileAction">
+        <keyboard-shortcut first-keystroke="ctrl f5"/>
     </action>
     <action id="ClassNameCompletion"/>
     <action id="CloneElement"/>
@@ -105,6 +112,24 @@
     <action id="CollapseSelection">
         <keyboard-shortcut first-keystroke="ctrl meta period"/>
     </action>
+    <action id="com.alexey-anufriev.scopes-manager.AddToScopeActionGroup">
+        <keyboard-shortcut first-keystroke="alt s"/>
+    </action>
+    <action id="com.alexey-anufriev.scopes-manager.RemoveFromScopeActionGroup">
+        <keyboard-shortcut first-keystroke="alt d"/>
+    </action>
+    <action id="com.jtschwartz.smartsort.RecursiveSort">
+        <keyboard-shortcut first-keystroke="alt s" second-keystroke="alt l"/>
+    </action>
+    <action id="com.karateca.jstoolbox.joiner.JoinerAction"/>
+    <action id="com.karateca.jstoolbox.tobrowser.ToBrowserAction"/>
+    <action id="com.karateca.jstoolbox.toconstructor.GoToConstructorAction"/>
+    <action id="com.karateca.jstoolbox.torelated.GoToTestAction"/>
+    <action id="com.karateca.jstoolbox.torelated.GoToViewAction"/>
+    <action id="com.starzec.piotr.CreateTypeScriptBarrelAction">
+        <keyboard-shortcut first-keystroke="alt t" second-keystroke="alt s"/>
+    </action>
+    <action id="com.wix.rt.switch"/>
     <action id="CommentByBlockComment">
         <keyboard-shortcut first-keystroke="shift ctrl divide"/>
         <keyboard-shortcut first-keystroke="shift meta slash"/>
@@ -140,6 +165,9 @@
     <action id="Console.TableResult.HideColumn">
         <keyboard-shortcut first-keystroke="alt h" second-keystroke="alt c"/>
     </action>
+    <action id="Console.TableResult.LastPage">
+        <keyboard-shortcut first-keystroke="alt l" second-keystroke="alt p"/>
+    </action>
     <action id="Console.TableResult.NavigateAction">
         <keyboard-shortcut first-keystroke="f4"/>
     </action>
@@ -156,9 +184,6 @@
         <keyboard-shortcut first-keystroke="meta s"/>
     </action>
     <action id="Console.TableResult.SetNull"/>
-    <action id="Console.TableResult.LastPage">
-        <keyboard-shortcut first-keystroke="alt l" second-keystroke="alt p"/>
-    </action>
     <action id="Console.TableResult.SubmitAndCommit">
         <keyboard-shortcut first-keystroke="shift ctrl alt enter"/>
         <keyboard-shortcut first-keystroke="meta s"/>
@@ -168,31 +193,29 @@
         <keyboard-shortcut first-keystroke="meta s"/>
     </action>
     <action id="ContextHelp"/>
+    <action id="copilot.chat.show"/>
     <action id="CopyElement"/>
     <action id="CopyPaths"/>
     <action id="Coverage">
         <keyboard-shortcut first-keystroke="ctrl f5"/>
-    </action>
-    <action id="Debugger.AddInlineWatch">
-        <keyboard-shortcut first-keystroke="alt a" second-keystroke="alt i"/>
-    </action>
-    <action id="DSM.Close">
-        <keyboard-shortcut first-keystroke="shift ctrl f4"/>
     </action>
     <action id="DashLauncherAction">
         <keyboard-shortcut first-keystroke="shift ctrl f1"/>
     </action>
     <action id="DatabaseView.CopyAction"/>
     <action id="DatabaseView.GenerateDDLAction"/>
+    <action id="DatabaseView.Refresh">
+        <keyboard-shortcut first-keystroke="ctrl r"/>
+    </action>
     <action id="DatabaseView.ShowDiff"/>
     <action id="DatabaseView.Tools">
         <keyboard-shortcut first-keystroke="alt enter"/>
     </action>
-    <action id="DatabaseView.Refresh">
-        <keyboard-shortcut first-keystroke="ctrl r"/>
-    </action>
     <action id="Debug">
         <keyboard-shortcut first-keystroke="shift f5"/>
+    </action>
+    <action id="Debugger.AddInlineWatch">
+        <keyboard-shortcut first-keystroke="alt a" second-keystroke="alt i"/>
     </action>
     <action id="Debugger.AddInlineWatch">
         <keyboard-shortcut first-keystroke="alt a" second-keystroke="alt i"/>
@@ -207,6 +230,9 @@
     </action>
     <action id="DomElementsTreeView.GotoDomElementDeclarationAction">
         <keyboard-shortcut first-keystroke="f4"/>
+    </action>
+    <action id="DSM.Close">
+        <keyboard-shortcut first-keystroke="shift ctrl f4"/>
     </action>
     <action id="DumpLookupElementWeights"/>
     <action id="Editor Copy">
@@ -241,11 +267,11 @@
     <action id="EditorCloneCaretBelow">
         <keyboard-shortcut first-keystroke="alt down"/>
     </action>
-    <action id="ExpandCollapseToggleAction">
-        <keyboard-shortcut first-keystroke="shift meta period"/>
-    </action>
     <action id="EditorCompleteStatement">
         <keyboard-shortcut first-keystroke="meta semicolon"/>
+    </action>
+    <action id="EditorCreateRectangularSelectionOnMouseDrag">
+        <mouse-shortcut keystroke="button2"/>
     </action>
     <action id="EditorDecreaseFontSize">
         <keyboard-shortcut first-keystroke="meta minus"/>
@@ -339,6 +365,7 @@
     <action id="EditorStartNewLineBefore">
         <keyboard-shortcut first-keystroke="shift enter"/>
     </action>
+    <action id="EditorStartNewLineBefore"/>
     <action id="EditorToggleColumnMode">
         <keyboard-shortcut first-keystroke="alt c" second-keystroke="alt s"/>
     </action>
@@ -352,17 +379,20 @@
     <action id="EditorToggleShowLineNumbers">
         <keyboard-shortcut first-keystroke="meta b" second-keystroke="meta l"/>
     </action>
-    <action id="EditorToggleUseSoftWraps">
-        <keyboard-shortcut first-keystroke="alt s" second-keystroke="alt w"/>
-    </action>
     <action id="EditorToggleShowWhitespaces">
         <keyboard-shortcut first-keystroke="meta b" second-keystroke="meta w"/>
     </action>
     <action id="EditorToggleStickySelection">
         <keyboard-shortcut first-keystroke="alt t" second-keystroke="alt s"/>
     </action>
+    <action id="EditorToggleUseSoftWraps">
+        <keyboard-shortcut first-keystroke="alt s" second-keystroke="alt w"/>
+    </action>
     <action id="EditorUnSelectWord">
         <keyboard-shortcut first-keystroke="shift alt w"/>
+    </action>
+    <action id="editRunConfigurations">
+        <keyboard-shortcut first-keystroke="shift ctrl alt f5"/>
     </action>
     <action id="EmmetEverywhere"/>
     <action id="EncapsulateFields">
@@ -371,6 +401,9 @@
     <action id="ExpandAll"/>
     <action id="ExpandAllRegions">
         <keyboard-shortcut first-keystroke="ctrl alt comma"/>
+    </action>
+    <action id="ExpandCollapseToggleAction">
+        <keyboard-shortcut first-keystroke="shift meta period"/>
     </action>
     <action id="ExpandDocComments"/>
     <action id="ExpandRegion">
@@ -385,6 +418,9 @@
     </action>
     <action id="ExternalSystem.RunTask">
         <keyboard-shortcut first-keystroke="alt r" second-keystroke="alt t"/>
+    </action>
+    <action id="FileChooser.LightEditGotoOpenedFile">
+        <keyboard-shortcut first-keystroke="alt o" second-keystroke="alt f"/>
     </action>
     <action id="FileChooser.NewFolder">
         <keyboard-shortcut first-keystroke="alt insert"/>
@@ -450,11 +486,11 @@
     <action id="Git.Revert">
         <keyboard-shortcut first-keystroke="shift ctrl alt r"/>
     </action>
-    <action id="GitToolBox.CleanBranches">
-        <keyboard-shortcut first-keystroke="alt g" second-keystroke="alt b"/>
-    </action>
     <action id="Github.Create.Pull.Request">
         <keyboard-shortcut first-keystroke="alt c" second-keystroke="alt p"/>
+    </action>
+    <action id="GitToolBox.CleanBranches">
+        <keyboard-shortcut first-keystroke="alt g" second-keystroke="alt b"/>
     </action>
     <action id="GotoAction">
         <keyboard-shortcut first-keystroke="shift meta a"/>
@@ -513,6 +549,7 @@
     <action id="HelloWorldAction">
         <keyboard-shortcut first-keystroke="shift alt h"/>
     </action>
+    <action id="hg4idea.QPushAction"/>
     <action id="HideAllWindows">
         <keyboard-shortcut first-keystroke="shift ctrl alt escape"/>
     </action>
@@ -556,11 +593,17 @@
     <action id="InvertBoolean">
         <keyboard-shortcut first-keystroke="alt i"/>
     </action>
+    <action id="io.unthrottled.theme.randomizer.next-theme">
+        <keyboard-shortcut first-keystroke="shift ctrl meta alt n"/>
+    </action>
     <action id="Jdbc.OpenTableEditor">
         <keyboard-shortcut first-keystroke="f4"/>
     </action>
     <action id="Jdbc.RunQueryInConsole"/>
     <action id="JFormDesigner.GotoJfdOrJavaAction"/>
+    <action id="Jira.Issue.Refresh">
+        <keyboard-shortcut first-keystroke="alt r" second-keystroke="alt i"/>
+    </action>
     <action id="JumpToColorsAndFonts">
         <keyboard-shortcut first-keystroke="alt j" second-keystroke="alt c"/>
     </action>
@@ -570,6 +613,9 @@
     </action>
     <action id="KDo-cer-menu-add">
         <keyboard-shortcut first-keystroke="alt c" second-keystroke="alt k"/>
+    </action>
+    <action id="krasa.editorGroups.SwitchGroup">
+        <keyboard-shortcut first-keystroke="shift ctrl w"/>
     </action>
     <action id="LocalHistory.PutLabel"/>
     <action id="LocalHistory.ShowHistory">
@@ -618,6 +664,9 @@
     <action id="NewElement">
         <keyboard-shortcut first-keystroke="ctrl n"/>
     </action>
+    <action id="NewFile">
+        <keyboard-shortcut first-keystroke="ctrl alt n"/>
+    </action>
     <action id="NewScratchFile">
         <keyboard-shortcut first-keystroke="shift ctrl i"/>
     </action>
@@ -626,10 +675,10 @@
         <keyboard-shortcut first-keystroke="alt down"/>
     </action>
     <action id="NextEditorTab"/>
-    <action id="NextTab"/>
     <action id="NextOccurence">
         <keyboard-shortcut first-keystroke="alt n" second-keystroke="alt o"/>
     </action>
+    <action id="NextTab"/>
     <action id="NextWindow">
         <keyboard-shortcut first-keystroke="meta back_quote"/>
         <keyboard-shortcut first-keystroke="alt n"/>
@@ -643,6 +692,20 @@
     </action>
     <action id="OptimizeImports">
         <keyboard-shortcut first-keystroke="alt o" second-keystroke="alt i"/>
+    </action>
+    <action id="org.intellij.plugins.markdown.ui.actions.styling.MarkdownCreateLinkAction"/>
+    <action id="org.intellij.plugins.markdown.ui.actions.styling.ToggleCodeSpanAction"/>
+    <action id="org.intellij.sdk.action.PopupDialogAction">
+        <keyboard-shortcut first-keystroke="shift meta period"/>
+    </action>
+    <action id="osmedile.intellij.stringmanip.DecrementAction">
+        <keyboard-shortcut first-keystroke="alt subtract"/>
+    </action>
+    <action id="osmedile.intellij.stringmanip.IncrementAction">
+        <keyboard-shortcut first-keystroke="alt add"/>
+    </action>
+    <action id="osmedile.intellij.stringmanip.SwitchCasePopup">
+        <keyboard-shortcut first-keystroke="shift meta u"/>
     </action>
     <action id="OverrideMethods">
         <keyboard-shortcut first-keystroke="ctrl alt o"/>
@@ -716,15 +779,12 @@
     <action id="ReplaceInPath">
         <keyboard-shortcut first-keystroke="shift ctrl r"/>
     </action>
-    <action id="RunClass"/>
-    <action id="RunDashboard.Run"/>
-    <action id="runShellFileAction"/>
     <action id="Rerun"/>
     <action id="RerunTests"/>
     <action id="ResizeToolWindowDown"/>
-    <action id="ResizeToolWindowUp"/>
     <action id="ResizeToolWindowLeft"/>
     <action id="ResizeToolWindowRight"/>
+    <action id="ResizeToolWindowUp"/>
     <action id="ResourceBundleEditorShowIntentions">
         <keyboard-shortcut first-keystroke="alt enter"/>
     </action>
@@ -732,9 +792,12 @@
     <action id="Run">
         <keyboard-shortcut first-keystroke="f5"/>
     </action>
+    <action id="RunClass"/>
+    <action id="RunDashboard.Run"/>
     <action id="RunGulpTask">
         <keyboard-shortcut first-keystroke="ctrl alt g"/>
     </action>
+    <action id="runShellFileAction"/>
     <action id="SaveAll">
         <keyboard-shortcut first-keystroke="meta s"/>
     </action>
@@ -793,6 +856,9 @@
     <action id="ShowSettings">
         <keyboard-shortcut first-keystroke="meta comma"/>
     </action>
+    <action id="SidePanelSwitcher.SwitchBottom">
+        <keyboard-shortcut first-keystroke="shift meta space"/>
+    </action>
     <action id="SmartSplit"/>
     <action id="SmartStepInto">
         <keyboard-shortcut first-keystroke="shift f6"/>
@@ -834,12 +900,15 @@
     <action id="SwitchRight">
         <keyboard-shortcut first-keystroke="ctrl alt right"/>
     </action>
-    <action id="TabShiftActions.ShiftDown"/>
-    <action id="TabShiftActions.ShiftUp"/>
     <action id="TableResult.UnselectPreviousOccurrence">
         <keyboard-shortcut first-keystroke="shift alt d"/>
         <keyboard-shortcut first-keystroke="shift meta j"/>
     </action>
+    <action id="TabShiftActions.ShiftDown"/>
+    <action id="TabShiftActions.ShiftUp"/>
+    <action id="tasks.close"/>
+    <action id="tasks.switch"/>
+    <action id="tasks.switch.toolbar"/>
     <action id="Terminal.ClearBuffer">
         <keyboard-shortcut first-keystroke="meta l"/>
     </action>
@@ -857,6 +926,7 @@
     <action id="TerminalSplitActionBase$Vertical">
         <keyboard-shortcut first-keystroke="shift ctrl back_slash"/>
     </action>
+    <action id="TextSearchAction"/>
     <action id="ToggleAction">
         <keyboard-shortcut first-keystroke="meta u"/>
     </action>
@@ -906,6 +976,9 @@
     <action id="Vcs.Force.Push">
         <keyboard-shortcut first-keystroke="alt f" second-keystroke="alt p"/>
     </action>
+    <action id="Vcs.LLMCommitMessageAction">
+        <keyboard-shortcut first-keystroke="alt g" second-keystroke="alt c"/>
+    </action>
     <action id="Vcs.ShowDiffWithLocal">
         <keyboard-shortcut first-keystroke="alt c" second-keystroke="alt l"/>
     </action>
@@ -936,65 +1009,5 @@
     </action>
     <action id="XDebugger.MuteBreakpoints">
         <keyboard-shortcut first-keystroke="shift meta m"/>
-    </action>
-    <action id="com.alexey-anufriev.scopes-manager.AddToScopeActionGroup">
-        <keyboard-shortcut first-keystroke="alt s"/>
-    </action>
-    <action id="com.alexey-anufriev.scopes-manager.RemoveFromScopeActionGroup">
-        <keyboard-shortcut first-keystroke="alt d"/>
-    </action>
-    <action id="com.jtschwartz.smartsort.RecursiveSort">
-        <keyboard-shortcut first-keystroke="alt s" second-keystroke="alt l"/>
-    </action>
-    <action id="com.karateca.jstoolbox.joiner.JoinerAction"/>
-    <action id="com.karateca.jstoolbox.tobrowser.ToBrowserAction"/>
-    <action id="com.karateca.jstoolbox.toconstructor.GoToConstructorAction"/>
-    <action id="com.karateca.jstoolbox.torelated.GoToTestAction"/>
-    <action id="com.karateca.jstoolbox.torelated.GoToViewAction"/>
-    <action id="com.starzec.piotr.CreateTypeScriptBarrelAction">
-        <keyboard-shortcut first-keystroke="alt t" second-keystroke="alt s"/>
-    </action>
-    <action id="com.wix.rt.switch"/>
-    <action id="editRunConfigurations">
-        <keyboard-shortcut first-keystroke="shift ctrl alt f5"/>
-    </action>
-    <action id="krasa.editorGroups.SwitchGroup">
-        <keyboard-shortcut first-keystroke="shift ctrl w"/>
-    </action>
-    <action id="osmedile.intellij.stringmanip.DecrementAction">
-        <keyboard-shortcut first-keystroke="alt subtract"/>
-    </action>
-    <action id="osmedile.intellij.stringmanip.IncrementAction">
-        <keyboard-shortcut first-keystroke="alt add"/>
-    </action>
-    <action id="osmedile.intellij.stringmanip.SwitchCasePopup">
-        <keyboard-shortcut first-keystroke="shift meta u"/>
-    </action>
-    <action id="tasks.close"/>
-    <action id="tasks.switch"/>
-    <action id="tasks.switch.toolbar"/>
-    <action id="org.intellij.plugins.markdown.ui.actions.styling.MarkdownCreateLinkAction"/>
-    <action id="org.intellij.plugins.markdown.ui.actions.styling.ToggleCodeSpanAction"/>
-    <action id="EditorCreateRectangularSelectionOnMouseDrag">
-        <mouse-shortcut keystroke="button2"/>
-    </action>
-    <action id="Jira.Issue.Refresh">
-        <keyboard-shortcut first-keystroke="alt r" second-keystroke="alt i"/>
-    </action>
-    <action id="$ShowMaterialPaletteDialogAction">
-        <keyboard-shortcut first-keystroke="shift alt p"/>
-    </action>
-    <action id="FileChooser.LightEditGotoOpenedFile">
-        <keyboard-shortcut first-keystroke="alt o" second-keystroke="alt f"/>
-    </action>
-    <action id="NewFile">
-        <keyboard-shortcut first-keystroke="ctrl alt n"/>
-    </action>
-    <action id="SidePanelSwitcher.SwitchBottom">
-        <keyboard-shortcut first-keystroke="shift meta space"/>
-    </action>
-    <action id="hg4idea.QPushAction"/>
-    <action id="org.intellij.sdk.action.PopupDialogAction">
-        <keyboard-shortcut first-keystroke="shift meta period"/>
     </action>
 </keymap>
