@@ -22,21 +22,21 @@ def sort_keymap(file_path):
     # Extract all action tags
     # Handles both self-closing <action id="..."/> and <action id="...">...</action>
     action_pattern = re.compile(r'(\s*<action id="([^"]+)"(.*?)>)', re.DOTALL)
-    
-    actions = []
+
+    actions_map = {}  # action_id -> set of shortcut lines
     matches = list(action_pattern.finditer(content))
     last_end = 0
     for i, match in enumerate(matches):
         if match.start() < last_end:
             continue
             
-        full_tag_start = match.group(1)
         action_id = match.group(2)
         attributes_and_closing = match.group(3)
         
         if attributes_and_closing.strip().endswith('/'):
             # Self-closing
-            actions.append((action_id, full_tag_start))
+            if action_id not in actions_map:
+                actions_map[action_id] = set()
             last_end = match.end()
         else:
             # Has a closing tag </action>
@@ -44,25 +44,40 @@ def sort_keymap(file_path):
             start_pos = match.end()
             end_pos = content.find(end_tag, start_pos)
             if end_pos != -1:
-                full_tag = content[match.start():end_pos + len(end_tag)]
-                actions.append((action_id, full_tag))
+                inner_content = content[match.end():end_pos].strip()
+                lines = [line.strip() for line in inner_content.split('\n') if line.strip()]
+                if action_id not in actions_map:
+                    actions_map[action_id] = set()
+                actions_map[action_id].update(lines)
                 last_end = end_pos + len(end_tag)
             else:
-                # Fallback if closing tag is missing (should not happen in valid XML)
-                actions.append((action_id, full_tag_start))
+                # Fallback
+                if action_id not in actions_map:
+                    actions_map[action_id] = set()
                 last_end = match.end()
-    
-    if not actions:
+
+    if not actions_map:
         print(f"No actions found in: {file_path}")
         return
-    
-    # Sort actions by id (case-insensitive to match common expectations)
-    actions.sort(key=lambda x: x[0].lower())
-    
-    sorted_actions_content = "".join([a[1] for a in actions])
+
+    # Sort actions by id
+    sorted_ids = sorted(actions_map.keys(), key=lambda x: x.lower())
+
+    output = []
+    for aid in sorted_ids:
+        shortcuts = actions_map[aid]
+        if not shortcuts:
+            output.append(f'    <action id="{aid}"/>')
+        else:
+            output.append(f'    <action id="{aid}">')
+            for s in sorted(list(shortcuts)):
+                output.append(f'        {s}')
+            output.append(f'    </action>')
+
+    sorted_actions_content = "\n".join(output)
     
     # Construct the new content
-    new_content = f"{root_start_tag}{sorted_actions_content}\n</keymap>\n"
+    new_content = f"{root_start_tag}\n{sorted_actions_content}\n</keymap>\n"
     
     with open(file_path, 'w', encoding='utf-8') as f:
         f.write(new_content)

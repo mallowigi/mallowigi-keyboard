@@ -4,8 +4,8 @@ sort-keymaps:
 
 # Compare two keymap files (usage: make compare file1=path/to/file1 file2=path/to/file2)
 compare:
-	python3 scripts/compare_keymaps.py $(file1) $(file2)
+	python3 scripts/compare_keymaps.py src/main/resources/keymaps/Mallowigi OSX.xml compare.xml
 
 # Generate a diff markdown report (usage: make generate-diff file1=path/to/file1 file2=path/to/file2)
 generate-diff:
-	python3 scripts/generate_diff_md.py $(file1) $(file2) > diff.md
+	python3 scripts/generate_diff_md.py src/main/resources/keymaps/Mallowigi OSX.xml compare.xml > diff.md
