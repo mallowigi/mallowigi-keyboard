@@ -40,4 +40,13 @@
         <listener class="com.mallowigi.keymap.ShortcutDetective"
                   topic="com.intellij.openapi.actionSystem.ex.AnActionListener"/>
     </projectListeners>
+
+    <actions>
+        <action id="com.mallowigi.keymap.ContributeKeymapAction"
+                class="com.mallowigi.keymap.ContributeKeymapAction"
+                text="Contribute Keymap Changes..."
+                description="Compare your current keymap with the bundled Mallowigi keymap and contribute changes to the repository">
+            <add-to-group group-id="HelpMenu" anchor="after" relative-to-action="HelpReportFeedback"/>
+        </action>
+    </actions>
 </idea-plugin>
